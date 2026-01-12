@@ -1,11 +1,15 @@
 import { Before, After } from '@cucumber/cucumber';
-import { chromium, Browser, Page } from '@playwright/test';
+import { chromium, Browser, Page } from 'playwright';
 
-let browser: Browser;
+export class CustomWorld {
+  browser!: Browser;
+  page!: Page;
+}
 
 Before(async function () {
-  browser = await chromium.launch({ headless: false });
-  this.page = await browser.newPage();
+  this.browser = await chromium.launch({ headless: true });
+  const context = await this.browser.newContext();
+  this.page = await context.newPage();
 });
 
 After(async function () {
