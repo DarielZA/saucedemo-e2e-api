@@ -9,5 +9,7 @@ Before(async function () {
 });
 
 After(async function () {
-  await browser.close();
+  if (this.browser) {
+    await this.browser.close();
+  }
 });
