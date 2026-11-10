@@ -1,80 +1,78 @@
-# SauceDemo – Automatización E2E + API con CI/CD
+# SauceDemo - E2E + API Test Automation with CI/CD
 
-Este proyecto implementa una suite de **pruebas automatizadas E2E y de API** para validar el flujo de compra de la aplicación **SauceDemo**, aplicando buenas prácticas de automatización, el patrón **Screenplay**, **BDD con Cucumber** y **CI/CD con GitHub Actions**.
-
----
-
-## 🧠 Arquitectura de Pruebas
-
-Se implementó el patrón **Screenplay**, logrando una clara separación de responsabilidades:
-
-- **actors**: Representan a los usuarios del sistema.
-- **abilities**: Capacidades del actor (ej. navegar con Playwright).
-- **tasks**: Acciones que el actor realiza (login, agregar producto, checkout, logout).
-- **questions**: Validaciones del estado de la aplicación.
-- **steps**: Definición de pasos BDD (Cucumber).
-- **features**: Escenarios en formato Gherkin.
-- **api**: Pruebas automatizadas de API.
-- **.env**: Configuración de entorno con credenciales de prueba.
+Automated E2E and API test suite for the purchase flow of the [SauceDemo](https://www.saucedemo.com) web app, built with the **Screenplay** pattern, **BDD with Cucumber**, and **CI/CD with GitHub Actions**.
 
 ---
 
-## 🧪 Pruebas E2E (Frontend Web)
+## Test Architecture
 
-Las pruebas E2E validan el flujo principal de negocio en **https://www.saucedemo.com**.
+Built on the **Screenplay** pattern for a clear separation of responsibilities:
 
-### Escenarios cubiertos:
-1. **Login exitoso**
-2. **Login fallido (credenciales inválidas)**
-3. **Compra exitosa de un producto (camino feliz)**
-4. **Logout del usuario**
+- **actors**: represent the system's users
+- **abilities**: what an actor can do (e.g. browse with Playwright)
+- **tasks**: actions the actor performs (login, add product, checkout, logout)
+- **questions**: assertions on the application's state
+- **steps**: BDD step definitions (Cucumber)
+- **features**: scenarios in Gherkin format
+- **api**: automated API tests
+- **.env**: environment configuration with test credentials (gitignored)
 
-### ▶️ Ejecutar pruebas E2E
+---
+
+## E2E Tests (Web Frontend)
+
+The E2E tests validate the core business flow on https://www.saucedemo.com.
+
+### Scenarios covered:
+1. Successful login
+2. Failed login (invalid credentials)
+3. Successful product purchase (happy path)
+4. User logout
+
+### Run the E2E tests
 ```bash
 npm test
 ```
 
 ---
 
-## 🔗 Pruebas de API (DummyJSON)
+## API Tests (DummyJSON)
 
-Se implementaron pruebas de API usando **Playwright APIRequestContext** contra **https://dummyjson.com**.
+API tests built with **Playwright APIRequestContext** against https://dummyjson.com.
 
-### Validaciones realizadas:
-- Login de **al menos 3 usuarios reales**
-- Validación de **contrato del servicio**
-  - `accessToken`
-  - `refreshToken`
-- Flujo completo de autenticación:
+### What's validated:
+- Login with at least 3 real users
+- Service contract validation (`accessToken`, `refreshToken`)
+- Full authentication flow:
   ```
-  GET /users → POST /auth/login → GET /auth/me
+  GET /users -> POST /auth/login -> GET /auth/me
   ```
 
-### ▶️ Ejecutar pruebas de API
+### Run the API tests
 ```bash
 npm run test:api
 ```
 
 ---
 
-## ⚙️ CI/CD con GitHub Actions
+## CI/CD with GitHub Actions
 
-El proyecto cuenta con integración continua mediante **GitHub Actions**, configurada en:
+Continuous integration via **GitHub Actions**, configured in:
 
 ```
 .github/workflows/run-tests.yml
 ```
 
-### El pipeline:
-- Se ejecuta en cada **push a main/master**
-- Puede ejecutarse manualmente desde la UI de GitHub
-- Usa **Node.js 20**
-- Instala dependencias y navegadores de Playwright
-- Ejecuta las pruebas E2E automáticamente
+### The pipeline:
+- Runs on every **push to main/master**
+- Can be triggered manually from the GitHub UI
+- Uses **Node.js 20**
+- Installs dependencies and Playwright browsers
+- Runs the E2E tests automatically
 
 ---
 
-## 🛠️ Herramientas Utilizadas
+## Tools
 
 - **TypeScript**
 - **Playwright**
@@ -85,7 +83,6 @@ El proyecto cuenta con integración continua mediante **GitHub Actions**, config
 
 ---
 
-## 👤 Autor
+## Author
 
-**Dariel Aguilar**  
-QA Automation
+**Dariel Aguilar** - QA Engineer
